@@ -16,8 +16,19 @@ for _, lsp in ipairs(servers) do
   }
 end
 
-require("luau-lsp").config {
-  ...
+require("luau-lsp").setup {
+  server = {
+    settings = {
+      -- https://github.com/folke/neoconf.nvim/blob/main/schemas/luau_lsp.json
+      ["luau-lsp"] = {
+        completion = {
+          imports = {
+            enabled = true, -- enable auto imports
+          },
+        },
+      },
+    },
+  },
 }
 
 ---@alias luau-lsp.PlatformType "standard" | "roblox"
@@ -80,4 +91,4 @@ local defaults = {
    on_attach = nvlsp.on_attach,
    on_init = nvlsp.on_init,
    capabilities = nvlsp.capabilities,
- }
+}
